@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: fact_flights
+    description: Fact tavle containing one record per flight
+
+    columns:
+      - name: flight_key
+        description: Surrogate key for flight records
+        data_tests:
+          - not_null
+          - unique
+          
+      - name: transaction_id
+        description: Unique identifier for the flight from the source system.
+        data_tests:
+          - not_null
+          - unique
+          
+      - name: flight_number
+        description: Flight number assigned by the airline.
+        data_tests:
+          - not_null
+          
+          
+
+      - name: airline_key
+        description: Foreign Key referencing the airline dimension
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_airlines')
+              field: airline_key
+      
+      - name: airline_key
+        description: Foreign key referencing the airline dimension.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_airlines')
+                field: airline_key
+
+      - name: origin_airport_key
+        description: Foreign key referencing the origin airport dimension.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_airports')
+                field: airport_key
+
+      - name: destination_airport_key
+        description: Foreign key referencing the destination airport dimension.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_airports')
+                field: airport_key
+
+      - name: date_key
+        description: Foreign key referencing the date dimension.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_dates')
+                field: date_key
+          

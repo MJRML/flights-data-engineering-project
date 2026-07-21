@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: mart_busiest_airports
+    description: Monthly airport departure performance metrics.
+
+    columns:
+      - name: airport_key
+        description: Surrogate key for the airport.
+        tests:
+          - not_null
+
+      - name: airport_code
+        description: Airport code.
+        tests:
+          - not_null
+
+      - name: year
+        description: Calendar year.
+        tests:
+          - not_null
+
+      - name: month
+        description: Calendar month.
+        tests:
+          - not_null
+
+      - name: total_departures
+        description: Total departing flights.
+        tests:
+          - not_null
