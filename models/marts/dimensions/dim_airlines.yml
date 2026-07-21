@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_airlines
+    description: Airline dimension containing one record per airline
+
+    columns:
+      - name: airline_key
+        description: Surrogate Kay for the airline
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: airline_code
+        description: Business key for the airline
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: airline_name
+        description: Clean airline Name
+        data_tests:
+          - not_null
+          
+          

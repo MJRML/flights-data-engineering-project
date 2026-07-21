@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: int_flights_enriched
+    description: >
+      Enriched flight data with cleaned text fields, numeric conversions,
+      and reusable business classifications.
+
+    columns:
+      - name: transaction_id
+        description: Unique identifier for each flight record
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: flight_date
+        description: Date of the flight
+        data_tests:
+          - not_null
+
+      - name: distance_miles
+        description: Flight distance in miles
+        data_tests:
+          - not_null
+
+      - name: distance_band
+        description: Distance classification
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "Short Haul"
+                  - "Medium Haul"
+                  - "Long haul"
+      
+      - name: flight_status
+        description: Final flight status.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "Completed"
+                  - "Cancelled"
+                  - "Diverted"
+
+      - name: departure_on_time_performance
+        description: Departure performance classification.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "On Time"
+                  - "Delayed"
+
+      
+      - name: arrival_on_time_performance
+        description: Arrival performance classification.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "On Time"
+                  - "Delayed"
+          

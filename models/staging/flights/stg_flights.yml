@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_flights
+    description: >
+      Staging model for flight data ingested from Fivetran. This model
+      standardizes column names, normalizes data types, and preserves the
+      source data without applying business logic.
+
+    columns:
+      - name: transaction_id
+        description: Unique identifier for each flight record
+        data_tests:
+          - not_null
+          - unique
+          
+      - name: flight_date
+        description: Date of scheduled flight
+        data_tests:
+          - not_null
+      
+      - name: cancelled
+        description: Column indicates if flight has been cancelled
+        data_tests:
+          - accepted_values:
+              arguments: 
+                values: [true, false]
+      
+      - name: diverted
+        description: Column indicates if flight has been diverted
+        data_tests:
+          - accepted_values:
+              arguments: 
+                values: [true, false]
+          

@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_airports
+    description: Airport dimension containing one record per airport
+
+    columns:
+      - name: airport_key
+        description: Surrogate Key for the airport
+        data_tests:
+          - not_null
+          - unique
+          
+      - name: airport_code
+        description: Business Key for the airport
+        data_tests:
+          - not_null
+          - unique
+          
+      - name: airport_name
+        description: Airport name
+        data_tests:
+          - not_null
+
+      - name: city_name
+        description: City name
+        data_tests:
+          - not_null
+                    
+      
+
+          

@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw flight operational data ingested from Azure Blob Storage into
+      Snowflake by Fivetran. This layer represents the untransformed source
+      data and serves as the entry point for all downstream dbt models.
+
+    database: PC_FIVETRAN_DB
+    schema: raw
+
+    quoting:
+      database: false
+      schema: true
+      identifier: true
+
+    tables:
+      - name: flights
+        description: >
+          Raw flight records containing operational flight information,
+          delays, airports, airlines, and scheduling details.
