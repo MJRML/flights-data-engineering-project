@@ -57,9 +57,12 @@ Fivetran monitors the storage container and automatically loads new files into t
 ![Fivetran azure connector screenshot test](docs/images/fivetran/02_fivetran_azure_blob_connection_test.png)  
 
 ---
+
 **Fivetran connector successful sync**  
 ![Fivetran connector successful sync](docs/images/fivetran/03_fivetran_connector_successful_sync.png)  
+
 ---
+
 **Snowflake file ingestion from fivetran** 
 ![Snowflake fivetran file ingestion](docs/images/snowflake/07_snowflake_data_ingestion_from_fivetran.png)
 
