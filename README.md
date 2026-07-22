@@ -99,7 +99,7 @@ Apache Airflow orchestrates the pipeline by triggering the Fivetran sync, waitin
 **Screeshot: airflow successful dag run**  
 ![airflow successful dag run](docs/images/airflow/04_airflow_sucessful_dag_run.png)  
 
-**Screeshot: airflow successful dag run**  
+**Screenshot: airflow dag workflow**  
 ![airflow dag workflow](docs/images/airflow/5_airflow_successful_dag_run_dbt.png)  
 
 
@@ -110,7 +110,6 @@ Apache Airflow orchestrates the pipeline by triggering the Fivetran sync, waitin
 
 The curated business marts are connected directly to Tableau to produce interactive dashboards that demonstrate how the transformed data can be used for reporting and analysis.
 
-> *Insert Tableau worksheet screenshots*
 
 **Screenshot: Top 10 Total Flights by Airline**  
 ![Top 10 Total Flights by Airline](docs/images/tableau/12_tableau_top_10_total_flight_airline.png)  
