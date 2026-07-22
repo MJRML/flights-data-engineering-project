@@ -21,7 +21,50 @@ Throughout the project I focused on building something that was realistic rather
 - Apache Airflow orchestration
 - Incremental file ingestion
 - Automated data quality testing
-- Tableau analytics-ready reporting
+- Tableau analytics-ready reporting  
+
+## Architecture
+
+## Architecture
+
+The pipeline follows an ELT architecture. Raw flight data is uploaded to Azure Blob Storage, ingested into Snowflake using Fivetran, transformed with dbt into analytics-ready business marts, and visualised in Tableau. Apache Airflow orchestrates the ingestion and transformation workflow.
+
+```mermaid
+flowchart LR
+
+    subgraph Storage
+        A["Flight CSV Files"]
+        B["Azure Blob Storage"]
+        A --> B
+    end
+
+    subgraph Ingestion
+        C["Fivetran"]
+    end
+
+    subgraph Snowflake
+        D["RAW Layer"]
+        E["dbt Transformations"]
+        F["Business Marts"]
+        D --> E
+        E --> F
+    end
+
+    subgraph Analytics
+        G["Tableau"]
+    end
+
+    subgraph Orchestration
+        H["Apache Airflow"]
+    end
+
+    B --> C
+    C --> D
+    F --> G
+
+    H -. Trigger Fivetran Sync .-> C
+    H -. Run dbt Build .-> E
+```  
 
 ## Technologies Used
 
@@ -149,7 +192,9 @@ The curated business marts are connected directly to Tableau to produce reportin
 
 ## Data Model
 
-The data is modelled using a star schema to support reporting and analytical queries. A central fact table stores the flight activity, while dimension tables provide descriptive information about airlines, airports and dates. This structure keeps the model easy to understand and is a common approach in modern data warehouse design.
+The data is modelled using a star schema to support reporting and analytical queries. A central fact table stores the flight activity, while dimension tables provide descriptive information about airlines, airports and dates. This structure keeps the model easy to understand and is a common approach in modern data warehouse design.  
+
+**Star Schema**  
 
 ```mermaid
 erDiagram
