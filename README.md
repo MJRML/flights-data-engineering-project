@@ -43,7 +43,7 @@ The pipeline follows a straightforward ELT workflow, taking raw flight data from
 
 The pipeline begins with CSV files containing flight data being uploaded to Azure Blob Storage. This acts as the landing zone and provides a central location for new data before it is ingested into the warehouse.
 
-*Screenshot: Azure Blob Storage container*
+**Screenshot: Azure Blob Storage container**
 ![Azure Blob Storage Conatiner](docs/images/azure/01_Azure_Blob_Storage_Container.png)  
 
 
@@ -95,7 +95,14 @@ Automated dbt tests are executed throughout the transformation process to help m
 
 Apache Airflow orchestrates the pipeline by triggering the Fivetran sync, waiting for the ingestion to complete, and then executing the dbt transformation job. This ensures each stage runs in the correct order.
 
-> *Insert Airflow workflow screenshot*
+
+**Screeshot: airflow successful dag run**  
+![airflow successful dag run](docs/images/airflow/04_airflow_sucessful_dag_run.png)  
+
+**Screeshot: airflow successful dag run**  
+![airflow dag workflow](docs/images/airflow/5_airflow_successful_dag_run_dbt.png)  
+
+
 
 ---
 
@@ -104,3 +111,16 @@ Apache Airflow orchestrates the pipeline by triggering the Fivetran sync, waitin
 The curated business marts are connected directly to Tableau to produce interactive dashboards that demonstrate how the transformed data can be used for reporting and analysis.
 
 > *Insert Tableau worksheet screenshots*
+
+**Screenshot: Top 10 Total Flights by Airline**  
+![Top 10 Total Flights by Airline](docs/images/tableau/12_tableau_top_10_total_flight_airline.png)  
+
+**Screenshot: Average Departure Delays - Airline**  
+![Average Departure Delays - Airline](docs/images/tableau/13_tableau_avg_departure_delay_airlines.png)  
+
+**Screenshot: Top 15 average departure delays by airport**  
+![Top 15 average departure delays by airport](docs/images/tableau/14_tableau_top_15_avg_deaprture_delays_by_airport.png)  
+
+**Screenshot: Top 10 Airports by total departures**  
+![Top 10 Airports by total departures](docs/images/tableau/15_tableau_top_10_airports_by_depatures.png)  
+
