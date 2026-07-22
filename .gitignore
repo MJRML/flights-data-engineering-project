@@ -6,3 +6,27 @@ dbt_packages/
 logs/
 # end dbt Cloud content
 dbt_internal_packages/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# dbt
+dbt_packages/
+target/
+logs/
+
+# Airflow
+airflow/logs/
+airflow/.venv/
+airflow/config/
+
+# Environment files
+.env
+
+# OS / IDE
+.vscode/
+.DS_Store
+Thumbs.db
