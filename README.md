@@ -43,7 +43,7 @@ The pipeline follows a straightforward ELT workflow, taking raw flight data from
 
 The pipeline begins with CSV files containing flight data being uploaded to Azure Blob Storage. This acts as the landing zone and provides a central location for new data before it is ingested into the warehouse.
 
-**Screenshot: Azure Blob Storage container**
+**Azure Blob Storage container**
 ![Azure Blob Storage Conatiner](docs/images/azure/01_Azure_Blob_Storage_Container.png)  
 
 
@@ -53,13 +53,14 @@ The pipeline begins with CSV files containing flight data being uploaded to Azur
 
 Fivetran monitors the storage container and automatically loads new files into the RAW layer of Snowflake. Incremental ingestion was validated by loading multiple source files and confirming that only new records were processed.
 
-**Screenshot: Fivetran Azure connector test**  
+**Fivetran Azure connector test**  
 ![Fivetran azure connector screenshot test](docs/images/fivetran/02_fivetran_azure_blob_connection_test.png)  
 
-**Screenshot: Fivetran connector successful sync**  
+---
+**Fivetran connector successful sync**  
 ![Fivetran connector successful sync](docs/images/fivetran/03_fivetran_connector_successful_sync.png)  
-
-**Screenshot: Snowflake file ingestion from fivetran** 
+---
+**Snowflake file ingestion from fivetran** 
 ![Snowflake fivetran file ingestion](docs/images/snowflake/07_snowflake_data_ingestion_from_fivetran.png)
 
 ---
@@ -75,16 +76,22 @@ Once the raw data is available, dbt transforms it through several layers:
 
 Automated dbt tests are executed throughout the transformation process to help maintain data quality.
 
-**Screenshot: dbt stg_flights lineage graph**  
+**dbt stg_flights lineage graph**  
 ![dbt stg flights lineage graph](docs/images/dbt/09_dbt_cloud_staging_flights_lineage_graph.png)  
 
-**Screenshot: dbt fact_flights lineage graph**
+---
+
+**dbt fact_flights lineage graph**
 ![dbt fact flights lineage graph](docs/images/dbt/08_dbt_cloub_fact_flights_lineage_graph.png)  
 
-**Screenshot: dbt cloud tests passed**  
+---
+
+**dbt cloud tests passed**  
 ![dbt cloud tests passed](docs/images/dbt/10_dbt_cloud_tests_passed.png)  
 
-**Screeshot: dbt cloud dbt build passed**  
+---
+
+**dbt cloud dbt build passed**  
 ![dbt cloud dbt build passed no errors](docs/images/dbt/11_dbt_cloud_dbt_build_passed_no_errors.png)  
 
 
@@ -96,11 +103,18 @@ Automated dbt tests are executed throughout the transformation process to help m
 Apache Airflow orchestrates the pipeline by triggering the Fivetran sync, waiting for the ingestion to complete, and then executing the dbt transformation job. This ensures each stage runs in the correct order.
 
 
-**Screeshot: airflow successful dag run**  
+**airflow successful dag run**  
 ![airflow successful dag run](docs/images/airflow/04_airflow_sucessful_dag_run.png)  
 
-**Screenshot: airflow dag workflow**  
+---
+
+**airflow dag workflow**  
 ![airflow dag workflow](docs/images/airflow/5_airflow_successful_dag_run_dbt.png)  
+
+---
+
+**dbt cloud flights build job lineage graph**  
+![dbt cloud flights build job lineage graph](docs/images/dbt/07_dbt_cloud_flights_build_completion_lineage_graph.png)  
 
 
 
@@ -108,18 +122,24 @@ Apache Airflow orchestrates the pipeline by triggering the Fivetran sync, waitin
 
 ### 5. Analytics with Tableau
 
-The curated business marts are connected directly to Tableau to produce interactive dashboards that demonstrate how the transformed data can be used for reporting and analysis.
+The curated business marts are connected directly to Tableau to produce reporting-ready visualisations that demonstrate how the transformed data can be used for reporting and analysis.
 
 
-**Screenshot: Top 10 Total Flights by Airline**  
+**Top 10 Total Flights by Airline**  
 ![Top 10 Total Flights by Airline](docs/images/tableau/12_tableau_top_10_total_flight_airline.png)  
 
-**Screenshot: Average Departure Delays - Airline**  
+---
+
+**Average Departure Delays - Airline**  
 ![Average Departure Delays - Airline](docs/images/tableau/13_tableau_avg_departure_delay_airlines.png)  
 
-**Screenshot: Top 15 average departure delays by airport**  
+---
+
+**Top 15 average departure delays by airport**  
 ![Top 15 average departure delays by airport](docs/images/tableau/14_tableau_top_15_avg_deaprture_delays_by_airport.png)  
 
-**Screenshot: Top 10 Airports by total departures**  
+---
+
+**Top 10 Airports by total departures**  
 ![Top 10 Airports by total departures](docs/images/tableau/15_tableau_top_10_airports_by_depatures.png)  
 
