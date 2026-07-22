@@ -146,3 +146,51 @@ The curated business marts are connected directly to Tableau to produce reportin
 **Top 10 Airports by total departures**  
 ![Top 10 Airports by total departures](docs/images/tableau/15_tableau_top_10_airports_by_depatures.png)  
 
+
+## Data Model
+
+The data is modelled using a star schema to support reporting and analytical queries. A central fact table stores the flight activity, while dimension tables provide descriptive information about airlines, airports and dates. This structure keeps the model easy to understand and is a common approach in modern data warehouse design.
+
+```mermaid
+erDiagram
+
+    DIM_AIRLINES {
+        int airline_key PK
+        string airline_code
+        string airline_name
+    }
+
+    DIM_AIRPORTS {
+        int airport_key PK
+        string airport_code
+        string airport_name
+        string city
+        string state
+    }
+
+    DIM_DATES {
+        int date_key PK
+        date flight_date
+        int year
+        int month
+        int day
+    }
+
+    FACT_FLIGHTS {
+        int flight_key PK
+        int airline_key FK
+        int origin_airport_key FK
+        int destination_airport_key FK
+        int date_key FK
+        int departure_delay_minutes
+        int arrival_delay_minutes
+        int distance_miles
+        boolean cancelled
+        boolean diverted
+    }
+
+    DIM_AIRLINES ||--o{ FACT_FLIGHTS : airline_key
+    DIM_AIRPORTS ||--o{ FACT_FLIGHTS : origin_airport_key
+    DIM_AIRPORTS ||--o{ FACT_FLIGHTS : destination_airport_key
+    DIM_DATES ||--o{ FACT_FLIGHTS : date_key
+```
