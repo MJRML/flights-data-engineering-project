@@ -43,7 +43,6 @@ The pipeline follows a straightforward ELT workflow, taking raw flight data from
 
 The pipeline begins with CSV files containing flight data being uploaded to Azure Blob Storage. This acts as the landing zone and provides a central location for new data before it is ingested into the warehouse.
 
-> *![Azure Blob Storage Conatiner](docs/images/azure/01_Azure_Blob_Storage_Container.png)*
 
 ![Azure Blob Storage Conatiner](docs/images/azure/01_Azure_Blob_Storage_Container.png)
 
@@ -54,9 +53,12 @@ The pipeline begins with CSV files containing flight data being uploaded to Azur
 
 Fivetran monitors the storage container and automatically loads new files into the RAW layer of Snowflake. Incremental ingestion was validated by loading multiple source files and confirming that only new records were processed.
 
-> *Insert Fivetran connector screenshot*
 
-> *Insert Snowflake validation screenshot showing row counts or `_FILE` metadata*
+![Fivetran azure connector screenshot test](docs/images/fivetran/02_fivetran_azure_blob_connection_test.png)
+
+![Fivetran connector successful sunc](docs/images/fivetran/03_fivetran_connector_successful_sync.png)
+
+![Snowflake fivetran file ingestion](docs/images/snowflake/07_snowflake_data_ingestion_from_fivetran.png)
 
 ---
 
