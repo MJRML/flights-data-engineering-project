@@ -53,13 +53,13 @@ The pipeline begins with CSV files containing flight data being uploaded to Azur
 
 Fivetran monitors the storage container and automatically loads new files into the RAW layer of Snowflake. Incremental ingestion was validated by loading multiple source files and confirming that only new records were processed.
 
-*Screenshot: Fivetran Azure connector test*
+**Screenshot: Fivetran Azure connector test**  
 ![Fivetran azure connector screenshot test](docs/images/fivetran/02_fivetran_azure_blob_connection_test.png)  
 
-*Screenshot: Fivetran connector successful sync*
+**Screenshot: Fivetran connector successful sync**  
 ![Fivetran connector successful sync](docs/images/fivetran/03_fivetran_connector_successful_sync.png)  
 
-*Snowflake file ingestion from fivetran*
+**Screenshot: Snowflake file ingestion from fivetran** 
 ![Snowflake fivetran file ingestion](docs/images/snowflake/07_snowflake_data_ingestion_from_fivetran.png)
 
 ---
@@ -75,9 +75,19 @@ Once the raw data is available, dbt transforms it through several layers:
 
 Automated dbt tests are executed throughout the transformation process to help maintain data quality.
 
-> *Insert dbt lineage screenshot*
+**Screenshot: dbt stg_flights lineage graph**  
+![dbt stg flights lineage graph](docs/images/dbt/09_dbt_cloud_staging_flights_lineage_graph.png)  
 
-> *Insert dbt build/test screenshot*
+**Screenshot: dbt fact_flights lineage graph**
+![dbt fact flights lineage graph](docs/images/dbt/08_dbt_cloub_fact_flights_lineage_graph.png)  
+
+**Screenshot: dbt cloud tests passed**  
+![dbt cloud tests passed](docs/images/dbt/10_dbt_cloud_tests_passed.png)  
+
+**Screeshot: dbt cloud dbt build passed**  
+![dbt cloud dbt build passed no errors](docs/images/dbt/11_dbt_cloud_dbt_build_passed_no_errors.png)  
+
+
 
 ---
 
