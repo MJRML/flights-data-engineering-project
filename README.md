@@ -43,10 +43,10 @@ The pipeline follows a straightforward ELT workflow, taking raw flight data from
 
 The pipeline begins with CSV files containing flight data being uploaded to Azure Blob Storage. This acts as the landing zone and provides a central location for new data before it is ingested into the warehouse.
 
-> *Insert Azure Blob Storage screenshot*
+> *![Azure Blob Storage Conatiner](docs/images/azure/01_Azure_Blob_Storage_Container.png)*
+
 ![Azure Blob Storage Conatiner](docs/images/azure/01_Azure_Blob_Storage_Container.png)
 
-#![PostgreSQL Prompt Response Scoring](images/PostgreSQL_Prompt_Response_scoring.png)
 
 ---
 
