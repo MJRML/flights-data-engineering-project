@@ -12,7 +12,7 @@
 
 This project started as a way to build an end-to-end data engineering pipeline using the tools and technologies commonly found in modern cloud data platforms.
 
-The pipeline takes raw flight data stored in Azure Blob Storage, loads it into Snowflake using Fivetran, transforms it with dbt into a dimensional model, orchestrates the workflow with Apache Airflow, and finishes by making the data available for reporting in Tableau.
+The pipeline takes raw flight data stored in Azure Blob Storage, loads it into Snowflake using Fivetran, transforms it with dbt into a dimensional model, orchestrates the workflow using Apache Airflow running in Docker, and finishes by making the data available for reporting in Tableau.
 
 Rather than focusing on a single technology, the goal was to build the complete data journey—from raw files through to analytics-ready data—while following the engineering practices used in production environments.
 
@@ -75,16 +75,18 @@ flowchart LR
     end
 
     subgraph Orchestration
-        H["Apache Airflow"]
+        H["Docker"]
+        I["Apache Airflow"]
+        H --> I
     end
 
     B --> C
     C --> D
     F --> G
 
-    H -. Trigger Fivetran Sync .-> C
-    H -. Run dbt Build .-> E
-```  
+    I -. Trigger Fivetran Sync .-> C
+    I -. Run dbt Build .-> E
+```
 
 ---
 
@@ -97,6 +99,7 @@ flowchart LR
 | **Snowflake** | Serves as the cloud data warehouse for storing raw, transformed and analytics-ready data. |
 | **dbt** | Transforms the raw data into a layered warehouse model, applies data quality tests and builds the dimensional model. |
 | **Apache Airflow** | Orchestrates the pipeline by triggering the Fivetran sync and running the dbt transformation workflow. |
+| **Docker & Docker Compose** | Containerise the Apache Airflow environment, providing a consistent, reproducible, and isolated development and orchestration platform. |
 | **Tableau** | Connects to the business marts to create analytics-ready visualisations. |
 | **Git & GitHub** | Used for version control and project documentation throughout development. |
 
@@ -297,6 +300,10 @@ The analytical layer uses a star schema with a central fact table and supporting
 The original design planned to use the official Fivetran Airflow provider. During development, a compatibility issue was encountered with the provider and the version of Apache Airflow used in this project.
 
 Rather than downgrading Airflow or introducing unnecessary complexity, the pipeline triggers Fivetran using the REST API from a PythonOperator. This keeps the workflow compatible with the latest Airflow release while still providing reliable orchestration.
+
+### Containerisation with Docker
+
+Apache Airflow was deployed using Docker and Docker Compose to provide a consistent, isolated, and reproducible development environment. Containerising the orchestration layer simplified local setup, dependency management, and ensured the pipeline could be run consistently across different environments.
 
 ### Data Quality
 
